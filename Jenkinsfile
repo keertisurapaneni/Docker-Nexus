@@ -27,14 +27,10 @@ node () {
  
 
     stage('Build image') {
-     container = docker.build('visibilityspots/jenkins-docker')
+      container = docker.build('Simplewebapp/${BUILD_ID}')
     // sh 'docker build -t "visibilityspots/jenkins-docker" .'
        }
   
-
-    stage('Test image') {
-      bat 'export GOSS_FILES_STRATEGY=cp && /usr/local/bin/dgoss  run --name jenkins-docker-dgoss-test --rm -ti visibilityspots/jenkins-docker'
-    }
 
     stage('Push image') {
       docker.withRegistry('$NEXUS_URL', '$NEXUS_CREDENTIAL_ID') {
