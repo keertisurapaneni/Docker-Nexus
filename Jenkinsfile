@@ -37,7 +37,7 @@ node () {
      //   container.push("${shortCommit}")
       //  container.push('latest')
       withCredentials([string(credentialsId: 'nexus-pwd', variable: 'nexusRepoPwd')]) {
-        sh "docker login -u admin -p ${nexusRepoPwd}"
+        sh "docker login -u admin -p ${nexusRepoPwd} ${NEXUS_URL}"
      }
    //  sh 'docker push kammana/my-app:2.0.0'
       echo "Success!"
