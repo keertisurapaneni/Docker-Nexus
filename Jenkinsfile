@@ -37,6 +37,6 @@ node () {
      //   container.push("${shortCommit}")
       //  container.push('latest')
       echo "Success!"
-      }
+    //  }
     }
 }
