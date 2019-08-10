@@ -22,23 +22,23 @@ node () {
 
     stage('Clone repository') {
                 checkout scm
-       shortCommit = bat(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
+       shortCommit = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
     }
  
 
-   // stage('Build image') {
-      // container = docker.build('simplewebapp/test')
+   stage('Build image') {
+       container = docker.build('simplewebapp/test')
      //   sh 'docker build -t "simplewebapp/test1" .'
-      // }
+       }
   
 
     stage('Push image') {
       //docker.withRegistry('${NEXUS_URL}', '${NEXUS_CREDENTIAL_ID}') {
      //   container.push("${shortCommit}")
       //  container.push('latest')
-      withCredentials([string(credentialsId: 'nexus-pwd', variable: 'nexusRepoPwd')]) {
-        sh "docker login -u admin -p ${nexusRepoPwd} http://192.168.99.1:8123"
-     }
+      // withCredentials([string(credentialsId: 'nexus-pwd', variable: 'nexusRepoPwd')]) {
+    //    sh "docker login -u admin -p ${nexusRepoPwd} http://192.168.99.1:8123"
+    // }
    //  sh 'docker push kammana/my-app:2.0.0'
       echo "Success!"
  //     }
