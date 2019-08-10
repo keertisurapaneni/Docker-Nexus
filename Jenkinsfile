@@ -22,13 +22,13 @@ node () {
 
     stage('Clone repository') {
                 checkout scm
-       shortCommit = bat(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
+       shortCommit = sh(returnStdout: true, script: 'git rev-parse --short HEAD').trim()
     }
  
 
    stage('Build image') {
        // container = docker.build('simplewebapp/test')
-        sh 'docker build -t "simplewebapp/test1" .'
+     //   sh 'docker build -t "simplewebapp/test1" .'
        }
   
 
