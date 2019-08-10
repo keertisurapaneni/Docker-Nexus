@@ -7,7 +7,7 @@ node () {
         // This can be http or https
         NEXUS_PROTOCOL = "http"
         // Where your Nexus is running
-        NEXUS_URL = "http://localhost:8123"
+        NEXUS_URL = "http://192.168.99.1:8123"
         // Repository where we will upload the artifact
         NEXUS_REPOSITORY = "test"
         // Jenkins credential id to authenticate to Nexus OSS
@@ -37,7 +37,7 @@ node () {
      //   container.push("${shortCommit}")
       //  container.push('latest')
       withCredentials([string(credentialsId: 'nexus-pwd', variable: 'nexusRepoPwd')]) {
-        sh "docker login -u admin -p ${nexusRepoPwd} ${NEXUS_URL}"
+        sh "docker login -u admin -p ${nexusRepoPwd} http://192.168.99.1:8123"
      }
    //  sh 'docker push kammana/my-app:2.0.0'
       echo "Success!"
