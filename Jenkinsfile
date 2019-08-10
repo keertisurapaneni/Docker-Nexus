@@ -7,7 +7,7 @@ node () {
         // This can be http or https
         NEXUS_PROTOCOL = "http"
         // Where your Nexus is running
-        NEXUS_URL = "http://localhost:8081"
+        NEXUS_URL = "http://localhost:8123"
         // Repository where we will upload the artifact
         NEXUS_REPOSITORY = "test"
         // Jenkins credential id to authenticate to Nexus OSS
@@ -33,7 +33,7 @@ node () {
   
 
     stage('Push image') {
-     // docker.withRegistry('$NEXUS_URL', '$NEXUS_CREDENTIAL_ID') {
+      docker.withRegistry('$NEXUS_URL', '$NEXUS_CREDENTIAL_ID') {
      //   container.push("${shortCommit}")
       //  container.push('latest')
       echo "Success!"
