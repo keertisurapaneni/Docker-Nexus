@@ -27,7 +27,7 @@ node () {
  
 
     stage('Build image') {
-      container = docker.build('Simplewebapp/${BUILD_ID}')
+      container = docker.build('Simplewebapp/test')
     // sh 'docker build -t "visibilityspots/jenkins-docker" .'
        }
   
