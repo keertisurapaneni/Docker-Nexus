@@ -27,8 +27,8 @@ node () {
  
 
    stage('Build image') {
-       container = docker.build('simplewebapp/test')
-     //   sh 'docker build -t "simplewebapp/test1" .'
+       // container = docker.build('simplewebapp/test')
+        bat 'docker build -t "simplewebapp/test1" .'
        }
   
 
