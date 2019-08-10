@@ -33,7 +33,7 @@ node () {
   
 
     stage('Push image') {
-      docker.withRegistry('$NEXUS_URL', '$NEXUS_CREDENTIAL_ID') {
+      docker.withRegistry("${NEXUS_URL}", "${NEXUS_CREDENTIAL_ID}") {
      //   container.push("${shortCommit}")
       //  container.push('latest')
       echo "Success!"
