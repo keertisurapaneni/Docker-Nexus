@@ -26,10 +26,10 @@ node () {
     }
  
 
-    stage('Build image') {
+   // stage('Build image') {
       // container = docker.build('simplewebapp/test')
-        sh 'docker build -t "simplewebapp/test1" .'
-      }
+     //   sh 'docker build -t "simplewebapp/test1" .'
+      // }
   
 
     stage('Push image') {
