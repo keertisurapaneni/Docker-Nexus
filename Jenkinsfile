@@ -11,7 +11,7 @@ node () {
         // Repository where we will upload the artifact
         NEXUS_REPOSITORY = "test"
         // Jenkins credential id to authenticate to Nexus OSS
-        NEXUS_CREDENTIAL_ID = "NexusID"
+        NEXUS_CREDENTIAL_ID = credentials('NexusID')
     }
     
     stage('Initialize'){
@@ -33,10 +33,14 @@ node () {
   
 
     stage('Push image') {
-      docker.withRegistry("${NEXUS_URL}", "${NEXUS_CREDENTIAL_ID}") {
+      //docker.withRegistry('${NEXUS_URL}', '${NEXUS_CREDENTIAL_ID}') {
      //   container.push("${shortCommit}")
       //  container.push('latest')
+      withCredentials([string(credentialsId: 'nexus-pwd', variable: 'nexusRepoPwd')]) {
+        sh "docker login -u admin -p ${nexusRepoPwd}"
+     }
+   //  sh 'docker push kammana/my-app:2.0.0'
       echo "Success!"
-      }
+ //     }
     }
 }
