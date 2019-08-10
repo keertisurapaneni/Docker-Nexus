@@ -27,15 +27,16 @@ node () {
  
 
     stage('Build image') {
-      container = docker.build('simplewebapp/test')
-    // sh 'docker build -t "visibilityspots/jenkins-docker" .'
+      // container = docker.build('simplewebapp/test')
+        sh 'docker build -t "simplewebapp/test1" .'
       }
   
 
     stage('Push image') {
-      docker.withRegistry('$NEXUS_URL', '$NEXUS_CREDENTIAL_ID') {
-        container.push("${shortCommit}")
-        container.push('latest')
+     // docker.withRegistry('$NEXUS_URL', '$NEXUS_CREDENTIAL_ID') {
+     //   container.push("${shortCommit}")
+      //  container.push('latest')
+      echo "Success!"
       }
     }
 }
