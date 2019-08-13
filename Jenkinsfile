@@ -3,7 +3,7 @@ node () {
  // def  dockerTool = tool name: 'Docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
     environment {
         // Where your Nexus is running
-        NEXUS_URL = "192.168.99.1:8123"
+        def NEXUS_URL = "192.168.99.1:8123"
         // Repository where we will upload the artifact
         NEXUS_REPOSITORY = "test"
 
@@ -21,7 +21,7 @@ node () {
  
 
    stage('Build image') {
-       // container = docker.build('simplewebapp/test')
+       container = docker.build('simplewebapp/test')
        sh 'docker build -t "simplewebapp/test1" .'
        }
   
