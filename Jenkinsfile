@@ -29,6 +29,7 @@ node () {
     stage('Push image') {
       //docker.withRegistry('${NEXUS_URL}', '${NEXUS_CREDENTIAL_ID}') {
       //  container.push('latest')
+      def NEXUS_URL = "192.168.99.1:8123"
        withCredentials([string(credentialsId: 'nexus-pwd', variable: 'nexusRepoPwd')]) {
          sh "docker login -u admin -p ${nexusRepoPwd} ${NEXUS_URL}"
      }
