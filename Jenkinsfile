@@ -1,13 +1,6 @@
 node () {
   def container
- // def  dockerTool = tool name: 'Docker', type: 'org.jenkinsci.plugins.docker.commons.tools.DockerTool'
-    environment {
-        // Where your Nexus is running
-        def NEXUS_URL = "192.168.99.1:8123"
-        // Repository where we will upload the artifact
-        NEXUS_REPOSITORY = "test"
-
-    }
+  def NEXUS_URL = "192.168.99.1:8123"
     
     stage('Initialize'){
         def dockerHome = tool 'Docker'
@@ -29,7 +22,7 @@ node () {
     stage('Push image') {
       //docker.withRegistry('${NEXUS_URL}', '${NEXUS_CREDENTIAL_ID}') {
       //  container.push('latest')
-      def NEXUS_URL = "192.168.99.1:8123"
+      
        withCredentials([string(credentialsId: 'nexus-pwd', variable: 'nexusRepoPwd')]) {
          sh "docker login -u admin -p ${nexusRepoPwd} ${NEXUS_URL}"
      }
